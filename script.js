@@ -11,9 +11,9 @@ const loginModal = document.getElementById("loginModal");
 const luoghiModal = document.getElementById("luoghiModal")
 const tableCont = document.getElementById('table-container');
 // inizializzazione mappa
-let zoom = 12;
+let zoom = 5;
 let maxZoom = 19;
-let map = L.map('map').setView([-24.5312919, 111.8773933], zoom);
+let map = L.map('map').setView([-27.3585804, 132.5606708], zoom);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: maxZoom,
   attribution:
