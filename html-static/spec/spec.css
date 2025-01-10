@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+main {
+    margin: 2rem 0;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.carousel {
+    flex: 1;
+    max-width: 45%;
+    margin-right: 2rem;
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.description {
+    flex: 1;
+    max-width: 50%;
+}
+
+.description h2 {
+    margin-top: 0;
+}
+
+.description p {
+    line-height: 1.6;
+}
