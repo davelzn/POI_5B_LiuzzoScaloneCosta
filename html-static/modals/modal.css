@@ -1,0 +1,22 @@
+.modal.show {
+    display: block;
+}
+
+.modal-backdrop {
+    display: none;
+}
+
+body {
+    overflow: hidden;
+}
+
+.modal-dialog {
+    max-width: 500px;
+    margin: 100px auto;
+}
+
+.modal-content {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
