@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #f1f1f1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #333;
+    color: white;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header .username {
+    font-size: 1.2rem;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+}
+
+.table-container {
+    padding: 2rem;
+    background-color: #262626;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #333;
+}
+
+th,
+td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid #555;
+}
+
+th {
+    background-color: #444;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.btn-edit {
+    background-color: green;
+    color: white;
+}
+
+.btn-del {
+    background-color: red;
+    color: white;
+}
+
+.btn-add {
+    background-color: blue;
+    color: white;
+    margin-top: 1rem;
+    display: inline-block;
+}

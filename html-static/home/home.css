@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+#adminButton {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+main {
+    margin-top: 20px;
+}
+
+#map {
+    position: relative;
+    height: 400px;
+    background-image: url('/POI_5B_LiuzzoScaloneCosta/html-static/images/australia.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#map p {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.poi {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+#poi1 {
+    top: 30%;
+    left: 40%;
+}
+
+#poi2 {
+    top: 40%;
+    left: 50%;
+}
+
+#poi3 {
+    top: 50%;
+    left: 60%;
+}
+
+.divider {
+    height: 2px;
+    background-color: #000;
+    margin: 20px 0;
+}
+
+#list-view {
+    text-align: center;
+}
+
+#list-view h2 {
+    margin-bottom: 10px;
+}
+
+.search-bar {
+    margin-bottom: 10px;
+}
+
+.search-bar input {
+    padding: 5px;
+    width: 200px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
