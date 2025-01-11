@@ -1,76 +1,121 @@
+/* admin.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1a1a1a;
-    color: #f1f1f1;
+    background-color: #f0ebe1;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #333;
+    padding: 20px;
+    background-color: #2c3e50;
     color: white;
+}
+
+.header .username {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .header h1 {
     margin: 0;
-}
-
-.header .username {
-    font-size: 1.2rem;
+    font-size: 32px;
+    flex-grow: 1;
+    text-align: center;
 }
 
 .header a {
-    color: white;
     text-decoration: none;
+    font-size: 16px;
+    color: white;
+    background-color: #e67e22;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.header a:hover {
+    background-color: #d35400;
 }
 
 .table-container {
-    padding: 2rem;
-    background-color: #262626;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #333;
+    margin-bottom: 20px;
 }
 
-th,
-td {
-    padding: 1rem;
+table thead {
+    background-color: #e67e22;
+    color: white;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
     text-align: left;
-    border: 1px solid #555;
 }
 
-th {
-    background-color: #444;
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
 }
 
 .btn {
-    padding: 0.5rem 1rem;
+    padding: 10px 20px;
+    font-size: 16px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
-    margin: 0.5rem 0;
+    transition: background-color 0.3s;
+}
+
+.add-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #27ae60;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #229954;
 }
 
 .btn-edit {
-    background-color: green;
+    background-color: #f39c12;
     color: white;
+}
+
+.btn-edit:hover {
+    background-color: #e67e22;
 }
 
 .btn-del {
-    background-color: red;
+    background-color: #c0392b;
     color: white;
 }
 
-.btn-add {
-    background-color: blue;
-    color: white;
-    margin-top: 1rem;
-    display: inline-block;
+.btn-del:hover {
+    background-color: #a93226;
 }
