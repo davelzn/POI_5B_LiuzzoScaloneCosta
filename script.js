@@ -26,10 +26,10 @@ const cTable = (parentElement, data) => {
     '<table class="table"><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Family-friendly</th><th>Score</th></tr>';
   for (let i = 0; i < data.length; i++) {
     let luogo = data[i];
-    html += `<tr><td>${luogo.nome}</td><td>${luogo.targhe.join(
+    html += `<tr><td>${luogo.nome}</td><td>${luogo.desc.join(
       ', '
-    )}</td><td>${luogo.datetime[0]} ${luogo.datetime[1]}</td><td>${luogo.feriti
-      }</td><td>${luogo.morti}</td></tr>`;
+    )}</td><td>${luogo.foto[0]} ${luogo.foto[1]}</td><td>${luogo.per
+      }</td><td>${luogo.tipo}</td></tr>`;
   }
   html += '</table>';
   parentElement.innerHTML = html;
@@ -77,7 +77,7 @@ function SubmForm() {
   let indAU = nome + ', Australia';
   let url = `https://us1.locationiq.com/v1/search?key=${tokenMap}&q=${encodeURIComponent(
     indAU)}&format=json`;
-  if (!nome || !datetime || !feriti || !morti) {
+  if (!nome || !foto || !per || !tipo) {
     esitoDiv.innerHTML = '<div class="alert alert-danger">Compila tutti i campi!</div>';
     return;
 }
@@ -90,15 +90,15 @@ function SubmForm() {
           '<div class="alert alert-danger">nome non valido o inesistente!</div>';
       } else {
         let desc = document.getElementById('desc').value.split(',');
-        let datetime = document.getElementById('datetime').value.split('T');
-        let feriti = document.getElementById('feriti').value;
-        let morti = document.getElementById('morti').value;
+        let foto = document.getElementById('foto').value.split('T');
+        let per = document.getElementById('per').value;
+        let tipo = document.getElementById('tipo').value;
         const k = {
           nome: indAU,
-          targhe: targhe,
-          datetime: datetime,
-          feriti: feriti,
-          morti: morti,
+          desc: desc,
+          foto: foto,
+          per: per,
+          tipo: tipo,
           lat : data[0].lat,
           lon: data[0].lon
         };
@@ -112,10 +112,10 @@ function SubmForm() {
         esitoDiv.innerHTML ='<div class="alert alert-success">Prenotazione aggiunta con successo!</div>';
         //reset dei campi
         document.getElementById('address').value = '';
-        document.getElementById('targhe').value = '';
-        document.getElementById('datetime').value = '';
-        document.getElementById('feriti').value = '';
-        document.getElementById('morti').value = '';
+        document.getElementById('desc').value = '';
+        document.getElementById('foto').value = '';
+        document.getElementById('per').value = '';
+        document.getElementById('tipo').value = '';
         // Chiudere la modale e rimuovere eventuali overlay
         document.getElementById('luoghiModal').style.display = 'none';
         document.body.classList.remove('modal-open'); // Rimuove la classe che mantiene l'overlay
@@ -140,12 +140,12 @@ function renderLuoghi() {
       const marker = L.marker(coords).addTo(map);
       const popupContent = `
         <b>nome:</b> ${luogo.nome}<br>
-        <b>Targhe:</b> ${luogo.targhe.join(', ')}<br>
-        <b>Data e Ora:</b> ${luogo.datetime[0]} ${
-        luogo.datetime[1]
+        <b>desc:</b> ${luogo.desc.join(', ')}<br>
+        <b>Data e Ora:</b> ${luogo.foto[0]} ${
+        luogo.foto[1]
       }<br>
-        <b>Feriti:</b> ${luogo.feriti}<br>
-        <b>Morti:</b> ${luogo.morti}
+        <b>per:</b> ${luogo.per}<br>
+        <b>tipo:</b> ${luogo.tipo}
       `;
       marker.bindPopup(popupContent).openPopup();
 }
