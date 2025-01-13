@@ -23,10 +23,10 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //componente tabella 
 const cTable = (parentElement, data) => {
   let html =
-    '<table class="table"><tr><th>Indirizzo</th><th>Targhe</th><th>Date e Ora</th><th>Feriti</th><th>Morti</th></tr>';
+    '<table class="table"><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Family-friendly</th><th>Score</th></tr>';
   for (let i = 0; i < data.length; i++) {
     let luogo = data[i];
-    html += `<tr><td>${luogo.indirizzo}</td><td>${luogo.targhe.join(
+    html += `<tr><td>${luogo.nome}</td><td>${luogo.targhe.join(
       ', '
     )}</td><td>${luogo.datetime[0]} ${luogo.datetime[1]}</td><td>${luogo.feriti
       }</td><td>${luogo.morti}</td></tr>`;
@@ -72,13 +72,12 @@ document.getElementById("submit").onclick = () => {
 
 //funzione per inviare i dati del form
 function SubmForm() {
-  let indirizzo = document.getElementById('address').value;
+  let nome = document.getElementById('address').value;
   const esitoDiv = document.getElementById('esito');
-  let indAU = indirizzo + ', Australia';
+  let indAU = nome + ', Australia';
   let url = `https://us1.locationiq.com/v1/search?key=${tokenMap}&q=${encodeURIComponent(
-    indAU
-  )}&format=json`;
-  if (!indirizzo || !datetime || !feriti || !morti) {
+    indAU)}&format=json`;
+  if (!nome || !datetime || !feriti || !morti) {
     esitoDiv.innerHTML = '<div class="alert alert-danger">Compila tutti i campi!</div>';
     return;
 }
@@ -88,14 +87,14 @@ function SubmForm() {
       console.log(data);
       if (data.error === 'Unable to geocode') {
         esitoDiv.innerHTML =
-          '<div class="alert alert-danger">Indirizzo non valido o inesistente!</div>';
+          '<div class="alert alert-danger">nome non valido o inesistente!</div>';
       } else {
-        let targhe = document.getElementById('targhe').value.split(',');
+        let desc = document.getElementById('desc').value.split(',');
         let datetime = document.getElementById('datetime').value.split('T');
         let feriti = document.getElementById('feriti').value;
         let morti = document.getElementById('morti').value;
         const k = {
-          indirizzo: indAU,
+          nome: indAU,
           targhe: targhe,
           datetime: datetime,
           feriti: feriti,
@@ -126,9 +125,9 @@ function SubmForm() {
       }
     })
     .catch((error) => {
-      console.error("Errore durante il controllo dell'indirizzo:", error);
+      console.error("Errore durante il controllo dell'nome:", error);
       esitoDiv.innerHTML =
-        '<div class="alert alert-danger">Si è verificato un errore durante la verifica dell\'indirizzo!</div>';
+        '<div class="alert alert-danger">Si è verificato un errore durante la verifica dell\'nome!</div>';
     });
 }
 
@@ -140,7 +139,7 @@ function renderLuoghi() {
       const coords = [luogo.lat, luogo.lon];
       const marker = L.marker(coords).addTo(map);
       const popupContent = `
-        <b>Indirizzo:</b> ${luogo.indirizzo}<br>
+        <b>nome:</b> ${luogo.nome}<br>
         <b>Targhe:</b> ${luogo.targhe.join(', ')}<br>
         <b>Data e Ora:</b> ${luogo.datetime[0]} ${
         luogo.datetime[1]
@@ -161,7 +160,7 @@ function renderLuoghi() {
     let ind1 = document.getElementById('filtro').value;
     console.log(ind1);
     let filteredList = list.filter((k) =>
-      k.indirizzo.toLowerCase().includes(ind1.toLowerCase())
+      k.nome.toLowerCase().includes(ind1.toLowerCase())
     );
     console.log(filteredList);
     cTable(tableCont, filteredList);
