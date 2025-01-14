@@ -23,7 +23,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //componente tabella 
 const cTable = (parentElement, data) => {
   let html =
-    '<table class="table"><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Family-friendly</th><th>Score</th></tr>';
+    '<table><thead><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Family-friendly</th><th>Score</th></tr></thead>';
   for (let i = 0; i < data.length; i++) {
     let luogo = data[i];
     html += `<tr><td>${luogo.nome}</td><td>${luogo.desc}</td><td>${luogo.tipo} ${luogo.att}</td><td>${luogo.per
@@ -129,10 +129,9 @@ function SubmForm() {
         document.getElementById('foto').value = '';
         document.getElementById('per').value = '';
         document.getElementById('tipo').value = '';
-        // Chiudere la modale e rimuovere eventuali overlay
         document.getElementById('luoghiModal').style.display = 'none';
-        document.body.classList.remove('modal-open'); // Rimuove la classe che mantiene l'overlay
-        document.querySelector('.modal-backdrop').remove(); // Rimuove il backdrop oscuro
+        document.body.classList.remove('modal-open'); 
+        document.querySelector('.modal-backdrop').remove(); 
 
         cTable(tableCont, list);
       }
@@ -152,8 +151,8 @@ function renderLuoghi() {
       const coords = [luogo.lat, luogo.lon];
       const marker = L.marker(coords).addTo(map);
       const popupContent = `
-        <b>nome:</b> ${luogo.nome}<br>
-        <b>desc:</b> ${luogo.desc.join(', ')}<br>
+        <b>Nome:</b> ${luogo.nome}<br>
+        <b>:</b> ${luogo.desc}<br>
         <b>Data e Ora:</b> ${luogo.foto[0]} ${
         luogo.foto[1]
       }<br>
