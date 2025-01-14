@@ -93,14 +93,27 @@ function SubmForm() {
         let foto = document.getElementById('foto').value.split('T');
         let per = document.getElementById('per').value;
         let tipo = document.getElementById('tipo').value;
+        let att = document.getElementById('att').value;
+        let prz = document.getElementById('prz').value;
+        let dur = document.getElementById('dur').value;
+        let coord = document.getElementById('cord').value;
+        let ff = document.getElementById('ff').value;
+        let vic = document.getElementById('vic').value;
+        let punt = document.getElementById('punt').value;
         const k = {
           nome: indAU,
           desc: desc,
           foto: foto,
           per: per,
           tipo: tipo,
-          lat : data[0].lat,
-          lon: data[0].lon
+          att : att,
+          prz : prz,
+          dur : dur,
+          lat : lat,
+          lon: lon,
+          ff : ff,
+          vic: vic,
+          punt: punt
         };
         console.log(list);
         list.push(k);
