@@ -23,13 +23,13 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //componente tabella 
 const cTable = (parentElement, data) => {
   let html =
-    '<table class="table"><tr><th>Indirizzo</th><th>Targhe</th><th>Date e Ora</th><th>Feriti</th><th>Morti</th></tr>';
+    '<table class="table"><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Family-friendly</th><th>Score</th></tr>';
   for (let i = 0; i < data.length; i++) {
     let luogo = data[i];
-    html += `<tr><td>${luogo.indirizzo}</td><td>${luogo.targhe.join(
+    html += `<tr><td>${luogo.nome}</td><td>${luogo.desc.join(
       ', '
-    )}</td><td>${luogo.datetime[0]} ${luogo.datetime[1]}</td><td>${luogo.feriti
-      }</td><td>${luogo.morti}</td></tr>`;
+    )}</td><td>${luogo.foto[0]} ${luogo.foto[1]}</td><td>${luogo.per
+      }</td><td>${luogo.tipo}</td></tr>`;
   }
   html += '</table>';
   parentElement.innerHTML = html;
@@ -72,13 +72,12 @@ document.getElementById("submit").onclick = () => {
 
 //funzione per inviare i dati del form
 function SubmForm() {
-  let indirizzo = document.getElementById('address').value;
+  let nome = document.getElementById('address').value;
   const esitoDiv = document.getElementById('esito');
-  let indAU = indirizzo + ', Australia';
+  let indAU = nome + ', Australia';
   let url = `https://us1.locationiq.com/v1/search?key=${tokenMap}&q=${encodeURIComponent(
-    indAU
-  )}&format=json`;
-  if (!indirizzo || !datetime || !feriti || !morti) {
+    indAU)}&format=json`;
+  if (!nome || !foto || !per || !tipo) {
     esitoDiv.innerHTML = '<div class="alert alert-danger">Compila tutti i campi!</div>';
     return;
 }
@@ -88,18 +87,18 @@ function SubmForm() {
       console.log(data);
       if (data.error === 'Unable to geocode') {
         esitoDiv.innerHTML =
-          '<div class="alert alert-danger">Indirizzo non valido o inesistente!</div>';
+          '<div class="alert alert-danger">nome non valido o inesistente!</div>';
       } else {
-        let targhe = document.getElementById('targhe').value.split(',');
-        let datetime = document.getElementById('datetime').value.split('T');
-        let feriti = document.getElementById('feriti').value;
-        let morti = document.getElementById('morti').value;
+        let desc = document.getElementById('desc').value.split(',');
+        let foto = document.getElementById('foto').value.split('T');
+        let per = document.getElementById('per').value;
+        let tipo = document.getElementById('tipo').value;
         const k = {
-          indirizzo: indAU,
-          targhe: targhe,
-          datetime: datetime,
-          feriti: feriti,
-          morti: morti,
+          nome: indAU,
+          desc: desc,
+          foto: foto,
+          per: per,
+          tipo: tipo,
           lat : data[0].lat,
           lon: data[0].lon
         };
@@ -113,10 +112,10 @@ function SubmForm() {
         esitoDiv.innerHTML ='<div class="alert alert-success">Prenotazione aggiunta con successo!</div>';
         //reset dei campi
         document.getElementById('address').value = '';
-        document.getElementById('targhe').value = '';
-        document.getElementById('datetime').value = '';
-        document.getElementById('feriti').value = '';
-        document.getElementById('morti').value = '';
+        document.getElementById('desc').value = '';
+        document.getElementById('foto').value = '';
+        document.getElementById('per').value = '';
+        document.getElementById('tipo').value = '';
         // Chiudere la modale e rimuovere eventuali overlay
         document.getElementById('luoghiModal').style.display = 'none';
         document.body.classList.remove('modal-open'); // Rimuove la classe che mantiene l'overlay
@@ -126,9 +125,9 @@ function SubmForm() {
       }
     })
     .catch((error) => {
-      console.error("Errore durante il controllo dell'indirizzo:", error);
+      console.error("Errore durante il controllo dell'nome:", error);
       esitoDiv.innerHTML =
-        '<div class="alert alert-danger">Si è verificato un errore durante la verifica dell\'indirizzo!</div>';
+        '<div class="alert alert-danger">Si è verificato un errore durante la verifica dell\'nome!</div>';
     });
 }
 
@@ -140,13 +139,13 @@ function renderLuoghi() {
       const coords = [luogo.lat, luogo.lon];
       const marker = L.marker(coords).addTo(map);
       const popupContent = `
-        <b>Indirizzo:</b> ${luogo.indirizzo}<br>
-        <b>Targhe:</b> ${luogo.targhe.join(', ')}<br>
-        <b>Data e Ora:</b> ${luogo.datetime[0]} ${
-        luogo.datetime[1]
+        <b>nome:</b> ${luogo.nome}<br>
+        <b>desc:</b> ${luogo.desc.join(', ')}<br>
+        <b>Data e Ora:</b> ${luogo.foto[0]} ${
+        luogo.foto[1]
       }<br>
-        <b>Feriti:</b> ${luogo.feriti}<br>
-        <b>Morti:</b> ${luogo.morti}
+        <b>per:</b> ${luogo.per}<br>
+        <b>tipo:</b> ${luogo.tipo}
       `;
       marker.bindPopup(popupContent).openPopup();
 }
@@ -161,7 +160,7 @@ function renderLuoghi() {
     let ind1 = document.getElementById('filtro').value;
     console.log(ind1);
     let filteredList = list.filter((k) =>
-      k.indirizzo.toLowerCase().includes(ind1.toLowerCase())
+      k.nome.toLowerCase().includes(ind1.toLowerCase())
     );
     console.log(filteredList);
     cTable(tableCont, filteredList);
