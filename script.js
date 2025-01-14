@@ -26,9 +26,7 @@ const cTable = (parentElement, data) => {
     '<table class="table"><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Family-friendly</th><th>Score</th></tr>';
   for (let i = 0; i < data.length; i++) {
     let luogo = data[i];
-    html += `<tr><td>${luogo.nome}</td><td>${luogo.desc.join(
-      ', '
-    )}</td><td>${luogo.foto[0]} ${luogo.foto[1]}</td><td>${luogo.per
+    html += `<tr><td>${luogo.nome}</td><td>${luogo.desc}</td><td>${luogo.tipo} ${luogo.att}</td><td>${luogo.per
       }</td><td>${luogo.tipo}</td></tr>`;
   }
   html += '</table>';
@@ -96,10 +94,12 @@ function SubmForm() {
         let att = document.getElementById('att').value;
         let prz = document.getElementById('prz').value;
         let dur = document.getElementById('dur').value;
-        let coord = document.getElementById('cord').value;
+        let coord = document.getElementById('cord').value.split(',');
         let ff = document.getElementById('ff').value;
         let vic = document.getElementById('vic').value;
         let punt = document.getElementById('punt').value;
+        let lat = coord[0]
+        let lon = coord[1]
         const k = {
           nome: indAU,
           desc: desc,
