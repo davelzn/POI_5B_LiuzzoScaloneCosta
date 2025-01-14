@@ -1,7 +1,7 @@
 import { createNavigator } from './navigator.js';
 import { carica, salva, list } from "./carica_salva.js";
 
-//const navigator = createNavigator(document.querySelector('#container'));
+const navigator = createNavigator(document.querySelector('#container'));
 
 
 
