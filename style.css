@@ -1,41 +1,127 @@
-.visible {
-    display: block;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0ebe1;
 }
 
-.hidden {
-    display: none;
-}
-#map {
-    height: 100%;
-    width: 100%;
-}
-
-.layout {
-    height: 100%;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.table-container {
-    height: 100%;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #d4a373;
 }
 
-.add-luoghi-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #2c3e50;
 }
 
-.hidden {
-    display: none;
+header a {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #206cb3;
+    border-radius: 10px;
+    transition: background-color 0.3s;
 }
 
-#userDiv {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #f8f9fa;
-    padding: 5px 10px;
+header a:hover {
+    background-color: #1a27d4;
+}
+
+main {
+    padding: 20px 0;
+}
+
+section#map {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 200px;
+    background-image: url('path-to-your-image.jpg');
+    background-size: cover;
+    background-position: center;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
+    border: 2px solid #d4a373;
+    color: white;
+    font-size: 24px;
+}
+
+.divider {
+    height: 2px;
+    background-color: #d4a373;
+    margin: 20px 0;
+}
+
+section#list-view {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 2px solid #d4a373;
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #e67e22;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #d35400;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table thead {
+    background-color: #e67e22;
+    color: white;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
 }
