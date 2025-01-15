@@ -3,23 +3,12 @@ import { carica, salva, list } from "./carica_salva.js";
 
 const navigator = createNavigator(document.querySelector('#container'));
 
-
-
+//https://postimg.cc/gallery/QWHJ5L
 const apriBtn = document.getElementById("apriBtn");
 const apriLog = document.getElementById("apriLog");
 const loginModal = document.getElementById("loginModal");
 const luoghiModal = document.getElementById("luoghiModal")
 const tableCont = document.getElementById('table-container');
-// inizializzazione mappa
-let zoom = 5;
-let maxZoom = 19;
-let map = L.map('map').setView([-27.3585804, 132.5606708], zoom);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: maxZoom,
-  attribution:
-    '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-}).addTo(map);
-
 //componente tabella 
 const cTable = (parentElement, data) => {
   let html =
@@ -32,6 +21,18 @@ const cTable = (parentElement, data) => {
   html += '</table>';
   parentElement.innerHTML = html;
 };
+
+// inizializzazione mappa
+let zoom = 5;
+let maxZoom = 19;
+let map = L.map('map').setView([-27.3585804, 132.5606708], zoom);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: maxZoom,
+  attribution:
+    '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
+
+
 
 let tokenMap,myToken;
 fetch('./conf.json') // carica le variabili da conf.json
@@ -54,13 +55,6 @@ fetch('./conf.json') // carica le variabili da conf.json
   .catch((error) => console.error('Errore:', error));
 
 //Bottoni della modale
-apriLog.onclick = () => {
-  loginModal.style.display = "block";
-}
-
-apriBtn.onclick = () => {
-   luoghiModal.style.display = 'block';
-}
 document.getElementById("chiudiBtn").onclick = () => {
    luoghiModal.style.display = 'none';
 };
@@ -85,10 +79,10 @@ function SubmForm() {
       console.log(data);
       if (data.error === 'Unable to geocode') {
         esitoDiv.innerHTML =
-          '<div class="alert alert-danger">nome non valido o inesistente!</div>';
+          '<div class="alert alert-danger">Nome non valido o inesistente!</div>';
       } else {
         let desc = document.getElementById('desc').value.split(',');
-        let foto = document.getElementById('foto').value.split('T');
+        let foto = document.getElementById('foto').value.split(',');
         let per = document.getElementById('per').value;
         let tipo = document.getElementById('tipo').value;
         let att = document.getElementById('att').value;
@@ -164,8 +158,8 @@ function renderLuoghi() {
   }
 
   
-  const filterBtn = document.getElementById('filtroBtn');
-  const resetBtn = document.getElementById('resetBtn');
+  const filterBtn = document.getElementById('filter-btn');
+  const resetBtn = document.getElementById('reset-btn');
   
   filterBtn.onclick = () => {
     console.log('Funzione filtro');
@@ -184,13 +178,8 @@ function renderLuoghi() {
 const createLogin = () => {
   const inputName = document.querySelector("#user");
   const inputPassword = document.querySelector("#psw");
-  const loginButton = document.querySelector("#loginBtn");
-  const divPrivate = document.querySelector("#private");
-  const divLogin = document.querySelector("#login");
-  const esitoLog = document.getElementById("esitoLog");
-  const userDiv = document.getElementById("userDiv");
-  
-
+  const loginButton = document.getElementById("loginBtn");
+  const esitoLog = document.getElementById("esitoLog");  
   let isLogged = false;
 
   // Funzione login
@@ -217,28 +206,28 @@ const createLogin = () => {
   };
 
   loginButton.onclick = () => {
-    console.log(inputName.value, inputPassword.value)
+    console.log(inputName.value, inputPassword.value);
     login(inputName.value, inputPassword.value).then(result => {
       if (result) {
         isLogged = true;
-        console.log(isLogged)
-        divPrivate.classList.remove("hidden");
-        divPrivate.classList.add("visible");
-        divLogin.classList.add("hidden");
+        console.log(isLogged);
         loginModal.style.display = "none";
         document.body.classList.remove('modal-open');
-        document.querySelector('.modal-backdrop').remove();
-        apriBtn.classList.remove("hidden");
-        userDiv.innerHTML = inputName.value;
-        userDiv.classList.remove("hidden");
-
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) {
+          backdrop.remove();
+        }
+        window.location.hash = 'page2';
       } else {
         esitoLog.innerHTML =
           '<div class="alert alert-danger">Credenziali Errate!</div>';
       }
+    }).catch(error => {
+      console.error('Errore durante il login:', error);
+      esitoLog.innerHTML =
+        '<div class="alert alert-danger">Si è verificato un errore durante il login!</div>';
     });
   };
-
   return {
     isLogged: () => isLogged
   };
