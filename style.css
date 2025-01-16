@@ -164,6 +164,16 @@ table tbody tr:hover {
     flex-grow: 1;
     text-align: center;
 }
+.home-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.home-icon {
+    width: 24px;
+    height: 24px;
+}
 
 .header-ad a {
     text-decoration: none;

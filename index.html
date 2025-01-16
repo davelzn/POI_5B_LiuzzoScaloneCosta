@@ -28,8 +28,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">LOGIN UTENTE</h5>
-                            <button id="chiudiBtn" type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <button id="chiudiBtn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="loginForm">
@@ -49,75 +48,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--MODALE LUOGHI-->
-            <div class="modal" id="luoghiModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Aggiungi Luogo</h5>
-                            <button id="chiudiBtn" type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="luoghiForm">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Nome</label>
-                                    <input id="name" type="text" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="desc" class="form-label">Descrizione</label>
-                                    <input id="desc" type="text" class="form-control" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="foto" class="form-label">Foto(url): </label>
-                                    <input id="foto" type="datetime-local" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="per" class="form-label">Periodo migliore</label>
-                                    <input id="per" type="number" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tipo" class="form-label">Tipo</label>
-                                    <input id="tipo" type="number" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="att" class="form-label">Attività principali</label>
-                                    <input id="att" type="text" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="prz" class="form-label">Costo medio</label>
-                                    <input id="prz" type="text" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="dur" class="form-label">Durata consigliata</label>
-                                    <input id="dur" type="text" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="cord" class="form-label">Coordinate</label>
-                                    <input id="cord" type="text" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="ff" class="form-label">Adatto a famiglie</label>
-                                    <input id="ff" type="text" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="vic" class="form-label">Vicino a</label>
-                                    <input id="vic" type="text" class="form-control" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="punt" class="form-label">Valutazione</label>
-                                    <input id="punt" type="text" class="form-control" required />
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <div id="esito" class="mt-2"></div>
-                            <button id="submit" class="btn btn-primary">Salva</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>           
             <section id="list-view">
                 <div class="search-bar">
                     <input type="text" placeholder="Search by name">
@@ -130,20 +61,95 @@
         </div>
         <!--PAGINA 2-->
         <div id="pagina2" class="page">
-            <div class="header-ad">
+            <div id="header-ad" class="header-ad hidden">
                 <div class="username-ad"></div>
                 <h1>AUSTRALIA</h1>
-                <button id="home-btn-ad">Home</button>
+                <button id="home-btn-ad" class="home-button">
+                    <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                    </svg>
+                </button>
             </div>
-            <div class="table-container-ad"></div>
+            <!--MODALE LUOGHI-->
+            <div class="modal" id="luoghiModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div id ="modal-title" class="modal-title"></div>
+                            <button id="chiudiBtn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="luoghiForm">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input id="name" type="text" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="desc" class="form-label">Description</label>
+                                    <input id="desc" type="text" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="foto" class="form-label">Photos (Urls divided by comma): </label>
+                                    <input id="foto" type="text" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="per" class="form-label">Best season</label>
+                                    <input id="per" type="text" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tipo" class="form-label">Type</label>
+                                    <input id="tipo" type="text" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="att" class="form-label">Main activities</label>
+                                    <input id="att" type="text" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="prz" class="form-label">Average price</label>
+                                    <input id="prz" type="number" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dur" class="form-label">Recommended duration</label>
+                                    <input id="dur" type="text" class="form-control" required />
+                                </div>
+        
+                                <div class="mb-3">
+                                    <label for="ff" class="form-label">Family friendly</label>
+                                    <input id="ff" type="text" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="vic" class="form-label">Close to</label>
+                                    <input id="vic" type="text" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="punt" class="form-label">Score</label>
+                                    <input id="punt" type="text" class="form-control" required />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <div id="esito" class="mt-2"></div>
+                            <button id="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="table-container-ad" class="table-container-ad"></div>
+            <button class="add-btn-ad" id="add-btn-ad" data-bs-toggle="modal" data-bs-target="#luoghiModal">Add</button>
+
         </div>
         <!--PAGINA 3-->
         <div id="pagina3" class="page">
             <div class="container">
-                <header>
+                <div class="header-sp">
                     <h1 class="text-center my-4">Australia</h1>
-                    <button id="home-btn-sp">Home</button>
-                </header>
+                    <button id="home-btn-sp" class="home-button">
+                        <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                        </svg>
+                    </button>
+                </div>
                 <main>
                     <div class="content">
                         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
