@@ -217,7 +217,7 @@ const createLogin = () => {
         if (backdrop) {
           backdrop.remove();
         }
-        window.location.hash = 'page2';
+        window.location.hash = 'pagina2';
       } else {
         esitoLog.innerHTML =
           '<div class="alert alert-danger">Credenziali Errate!</div>';
