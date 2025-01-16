@@ -1,6 +1,7 @@
 import { createNavigator } from './navigator.js';
 import { carica, salva, list } from "./carica_salva.js";
 import { cTable,cTableAdmin } from './tables.js';
+
 const navigator = createNavigator(document.querySelector('#container'));
 
 //https://postimg.cc/gallery/WFMGy6d
@@ -89,6 +90,7 @@ function SubmForm() {
         let lon = data[0].lon;
 
         const k = {
+          id: uuid.v4(),  //genera un'id unicop
           nome: indAU,
           desc: desc,
           foto: foto,
@@ -112,7 +114,7 @@ function SubmForm() {
 
         esitoDiv.innerHTML = '<div class="alert alert-success">Prenotazione aggiunta con successo!</div>';
 
-        // Reset dei campi
+        //reset variabili
         document.getElementById('name').value = '';
         document.getElementById('desc').value = '';
         document.getElementById('foto').value = '';
@@ -125,15 +127,15 @@ function SubmForm() {
         document.getElementById('vic').value = '';
         document.getElementById('punt').value = '';
 
-        // Chiusura modale
+        //chiusura modale
         luoghiModal.style.display = 'none';
         document.body.classList.remove('modal-open');
         const backdrop = document.querySelector('.modal-backdrop');
         if (backdrop) {
           backdrop.remove();
         }
-
         cTable(tableCont, list);
+        cTableAdmin(tableContAd,list);
       }
     })
     .catch(error => {
@@ -191,10 +193,10 @@ addPlaceBtn.onclick = () => {
 }
 
 homeBtn.onclick = () => {
-  window.location.hash = 'pagina1';
+  window.location.hash = 'home';
 }
 homeBtnSp.onclick = () => {
-  window.location.hash = 'pagina1';
+  window.location.hash = 'home';
 }
 const createLogin = () => {
   const inputName = document.querySelector("#user");
@@ -238,7 +240,7 @@ const createLogin = () => {
         if (backdrop) {
           backdrop.remove();
         }
-        window.location.hash = 'pagina2';
+        window.location.hash = 'admin';
         headerAd.classList.remove = "hidden"
         cTableAdmin(tableContAd,list)
       } else {
