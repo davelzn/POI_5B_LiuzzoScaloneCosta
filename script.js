@@ -20,10 +20,12 @@ const headerAd = document.getElementById("header-ad");
 
 // inizializzazione mappa
 let zoom = 4;
-let maxZoom = 19;
+let maxZoom = 10;
+let minZoom = 4;
 let map = L.map('map').setView([-27.3585804, 132.5606708], zoom);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: maxZoom,
+  minZoom: minZoom,
   attribution:
     '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
@@ -176,14 +178,14 @@ document.getElementById("submit").onclick = () => {
 
 filterBtn.onclick = () => {
   console.log('Funzione filtro');
-  let ind1 = document.getElementById('filtro').value;
+  let ind1 = document.getElementById('filterS').value;
   console.log(ind1);
   let filteredList = list.filter((k) =>
     k.nome.toLowerCase().includes(ind1.toLowerCase())
   );
   console.log(filteredList);
   cTable(tableCont, filteredList);
-  document.getElementById('filtro').value = '';
+  document.getElementById('filterS').value = '';
 };
 resetBtn.onclick = () => {
   cTable(tableCont, list);
@@ -195,6 +197,7 @@ addPlaceBtn.onclick = () => {
 
 homeBtn.onclick = () => {
   window.location.hash = 'home';
+  document.body.style.overflow = 'auto';
 }
 homeBtnSp.onclick = () => {
   window.location.hash = 'home';

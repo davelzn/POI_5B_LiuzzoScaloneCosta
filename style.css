@@ -2,6 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
+    overflow: auto;
     padding: 0;
     background-color: #f0ebe1;
 }
@@ -164,8 +165,6 @@ table tbody tr:hover {
     flex-grow: 1;
     text-align: center;
 }
-<<<<<<< HEAD
-=======
 .home-button {
     background-color: transparent;
     border: none;
@@ -176,7 +175,6 @@ table tbody tr:hover {
     width: 24px;
     height: 24px;
 }
->>>>>>> 54188f276a74651f5158ecd08df62a4adb1c1245
 
 .header-ad a {
     text-decoration: none;
@@ -268,9 +266,6 @@ table tbody tr:hover {
 }
 
 .btn-del-ad:hover {
-<<<<<<< HEAD
-    background-color: #a93226;
-=======
     background-color: #a93226;
 }
 /* modal.css */
@@ -425,5 +420,4 @@ table tbody tr:hover {
     font-size: 16px;
     color: #7f8c8d;
     line-height: 1.6;
->>>>>>> 54188f276a74651f5158ecd08df62a4adb1c1245
 }
