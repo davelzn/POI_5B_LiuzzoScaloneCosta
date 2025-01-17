@@ -1,3 +1,4 @@
+/* home.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -25,16 +26,19 @@ header h1 {
     margin: 0;
     font-size: 32px;
     color: #2c3e50;
+    text-align: center;
 }
 
 header a {
     text-decoration: none;
-    padding: 10px 20px;
+    padding-right: px;
     font-size: 16px;
     color: white;
     background-color: #206cb3;
+    padding: 10px 20px;
     border-radius: 10px;
     transition: background-color 0.3s;
+    flex-shrink: 0;
 }
 
 header a:hover {
@@ -68,6 +72,12 @@ section#list-view {
     background-color: #fff;
     border-radius: 5px;
     border: 2px solid #d4a373;
+}
+
+section#list-view h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #2c3e50;
 }
 
 .search-bar {
@@ -123,4 +133,127 @@ table tbody tr:nth-child(even) {
 
 table tbody tr:hover {
     background-color: #f1f1f1;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+/* admiin.css */
+.header-ad {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: white;
+}
+
+.header-ad .username-ad {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header-ad h1 {
+    margin: 0;
+    font-size: 32px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-ad a {
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    background-color: #e67e22;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.header-ad a:hover {
+    background-color: #d35400;
+}
+
+.table-container-ad {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.table-ad {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-ad thead {
+    background-color: #e67e22;
+    color: white;
+}
+
+.table-ad th,
+.table-ad td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table-ad tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-ad tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.btn-ad {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-btn-ad {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #27ae60;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.add-btn-ad:hover {
+    background-color: #229954;
+}
+
+.btn-edit-ad {
+    background-color: #f39c12;
+    color: white;
+}
+
+.btn-edit-ad:hover {
+    background-color: #e67e22;
+}
+
+.btn-del-ad {
+    background-color: #c0392b;
+    color: white;
+}
+
+.btn-del-ad:hover {
+    background-color: #a93226;
 }
