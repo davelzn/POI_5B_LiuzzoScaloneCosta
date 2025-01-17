@@ -52,8 +52,7 @@ main {
 section#map {
     text-align: center;
     margin-bottom: 20px;
-    padding: 200px;
-    background-image: url('/POI_5B_LiuzzoScaloneCosta/html-static/images/australia.jpg');
+    padding: 300px; 
     background-size: cover;
     background-position: center;
     border-radius: 5px;
@@ -134,4 +133,11 @@ table tbody tr:nth-child(even) {
 
 table tbody tr:hover {
     background-color: #f1f1f1;
+}
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
 }
