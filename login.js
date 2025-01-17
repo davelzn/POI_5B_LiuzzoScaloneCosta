@@ -1,3 +1,20 @@
+let myToken, myKey;
+
+fetch('./conf.json') // carica le variabili da conf.json
+    .then(response => {
+        if (!response.ok) {
+            console.log('Errore nel caricamento del file JSON');
+        }
+        return response.json();
+    })
+    .then(data => {
+        myToken = data.cacheToken;
+        myKey = data.myKey;
+        //console.log(myKey)
+        //console.log(myToken)
+    })
+    .catch(error => console.error('Errore:', error));
+
 export const createLogin = () => {
   const inputName = document.querySelector("#user");
   const inputPassword = document.querySelector("#psw");
@@ -41,8 +58,7 @@ export const createLogin = () => {
           backdrop.remove();
         }
         window.location.hash = 'admin';
-        headerAd.classList.remove = "hidden"
-        cTableAdmin(tableContAd,list)
+        //cTableAdmin(tableContAd,list)
       } else {
         esitoLog.innerHTML =
           '<div class="alert alert-danger">Credenziali Errate!</div>';
