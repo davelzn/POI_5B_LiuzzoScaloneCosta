@@ -156,7 +156,7 @@ function renderLuoghi() {
     const coords = [luogo.lat, luogo.lon];
     const marker = L.marker(coords).addTo(map);
     const popupContent = `
-        <b>Nome:</b> ${luogo.nome}<br>
+        <b>Name:</b> ${luogo.nome}<br>
         <b>Description:</b> ${luogo.desc}<br>
         <b>Type:</b> ${luogo.tipo}<br>
         <b>Main activities:</b> ${luogo.att}<br>
@@ -193,7 +193,19 @@ resetBtn.onclick = () => {
 };
 
 addPlaceBtn.onclick = () => {
-  titleModal.innerHTML = "Add Place"
+  titleModal.innerHTML = "ADD NEW PLACE"
+  //reset variabili
+  document.getElementById('name').value = '';
+  document.getElementById('desc').value = '';
+  document.getElementById('foto').value = '';
+  document.getElementById('per').value = '';
+  document.getElementById('tipo').value = '';
+  document.getElementById('att').value = '';
+  document.getElementById('prz').value = '';
+  document.getElementById('dur').value = '';
+  document.getElementById('ff').value = '';
+  document.getElementById('vic').value = '';
+  document.getElementById('punt').value = '';
 }
 
 homeBtn.onclick = () => {
@@ -229,7 +241,7 @@ function modifica(i){
   document.getElementById('ff').value = luogo.ff
   document.getElementById('vic').value = luogo.vic
   document.getElementById('punt').value = luogo.punt
-  titleModal.innerHTML = "Modifica Luogo";
+  titleModal.innerHTML = "EDIT PLACE";
 
   document.getElementById("submit").onclick = () => {
     luogo.nome = document.getElementById('name').value
@@ -251,18 +263,5 @@ function modifica(i){
     })
     
   })
-    //reset variabili
-    document.getElementById('name').value = '';
-    document.getElementById('desc').value = '';
-    document.getElementById('foto').value = '';
-    document.getElementById('per').value = '';
-    document.getElementById('tipo').value = '';
-    document.getElementById('att').value = '';
-    document.getElementById('prz').value = '';
-    document.getElementById('dur').value = '';
-    document.getElementById('ff').value = '';
-    document.getElementById('vic').value = '';
-    document.getElementById('punt').value = '';
-
 }}
 createLogin();
