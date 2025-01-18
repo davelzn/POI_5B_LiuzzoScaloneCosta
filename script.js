@@ -48,7 +48,7 @@ fetch('./conf.json') // carica le variabili da conf.json
       console.log(list);
       renderLuoghi();
       cTable(tableCont, list);
-      cTableAdmin(tableContAd, list)
+      cTableAdmin(tableContAd, list, cancella, modifica)
     });
   })
   .catch((error) => console.error('Errore:', error));
@@ -202,5 +202,33 @@ homeBtn.onclick = () => {
 homeBtnSp.onclick = () => {
   window.location.hash = 'home';
 }
+function cancella(i){
+  list.splice(i, 1);
+  salva().then(() =>{
+    cTable(tableCont, list); 
+    cTableAdmin(tableContAd, list, cancella, modifica); 
+    carica().then(()=>{
+      renderLuoghi();
+    })
+    
+  })
+  
+}
 
+function modifica(i){
+  luoghiModal.style.display = "block";
+  titleModal.innerHTML = "Modifica Luogo";
+  const luogo = list[i];
+  document.getElementById('name').value = '';
+  document.getElementById('desc').value = '';
+  document.getElementById('foto').value = '';
+  document.getElementById('per').value = '';
+  document.getElementById('tipo').value = '';
+  document.getElementById('att').value = '';
+  document.getElementById('prz').value = '';
+  document.getElementById('dur').value = '';
+  document.getElementById('ff').value = '';
+  document.getElementById('vic').value = '';
+  document.getElementById('punt').value = '';
+}
 createLogin();

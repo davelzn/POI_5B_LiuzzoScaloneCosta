@@ -19,7 +19,7 @@ export const cTable = (parentElement, data) => {
     parentElement.innerHTML = html;
 };
 
-export const cTableAdmin = (parentElement, data) => {
+export const cTableAdmin = (parentElement, data, cancellaCB, modificaCB) => {
     let html =
         '<table class="table-ad"><thead><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Coordinates</th><th>Family-friendly</th><th>Close to</th><th>Score</th><th>Edit</th><th>Delete</th></tr></thead>';
     for (let i = 0; i < data.length; i++) {
@@ -36,10 +36,15 @@ export const cTableAdmin = (parentElement, data) => {
                     <td>${luogo.ff}</td>
                     <td>${luogo.vic}</td>
                     <td>${luogo.punt}</td>
-                    <td><button id="editBtn${i}" class="edit-btn">Edit</button></td>
-                    <td><button id="delBtn${i}" class="del-btn">Delete</button></td>
+                    <td><button onclick="modificaCB(${i})" id="editBtn${i}" class="edit-btn">Edit</button></td>
+                    <td><button onclick="cancellaCB(${i})" id="delBtn${i}" class="del-btn">Delete</button></td>
                  </tr>`;
     }
     html += '</table>';
     parentElement.innerHTML = html;
+
+    for (let i = 0; i < data.length; i++) {
+        document.getElementById(`delBtn${i}`).onclick = () => cancellaCB(i);
+        document.getElementById(`editBtn${i}`).onclick = () => modificaCB(i);
+    }
 };
