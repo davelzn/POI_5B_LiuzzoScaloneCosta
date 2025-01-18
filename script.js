@@ -185,10 +185,11 @@ filterBtn.onclick = () => {
   );
   console.log(filteredList);
   cTable(tableCont, filteredList);
-  document.getElementById('filterS').value = '';
+  
 };
 resetBtn.onclick = () => {
   cTable(tableCont, list);
+  document.getElementById('filterS').value = '';
 };
 
 addPlaceBtn.onclick = () => {
@@ -216,19 +217,52 @@ function cancella(i){
 }
 
 function modifica(i){
-  luoghiModal.style.display = "block";
-  titleModal.innerHTML = "Modifica Luogo";
   const luogo = list[i];
-  document.getElementById('name').value = '';
-  document.getElementById('desc').value = '';
-  document.getElementById('foto').value = '';
-  document.getElementById('per').value = '';
-  document.getElementById('tipo').value = '';
-  document.getElementById('att').value = '';
-  document.getElementById('prz').value = '';
-  document.getElementById('dur').value = '';
-  document.getElementById('ff').value = '';
-  document.getElementById('vic').value = '';
-  document.getElementById('punt').value = '';
-}
+  document.getElementById('name').value = luogo.nome;
+  document.getElementById('desc').value = luogo.desc;
+  document.getElementById('foto').value = luogo.foto;
+  document.getElementById('per').value = luogo.per;
+  document.getElementById('tipo').value = luogo.tipo
+  document.getElementById('att').value = luogo.att
+  document.getElementById('prz').value = luogo.prz
+  document.getElementById('dur').value = luogo.dur
+  document.getElementById('ff').value = luogo.ff
+  document.getElementById('vic').value = luogo.vic
+  document.getElementById('punt').value = luogo.punt
+  titleModal.innerHTML = "Modifica Luogo";
+
+  document.getElementById("submit").onclick = () => {
+    luogo.nome = document.getElementById('name').value
+    luogo.desc = document.getElementById('desc').value
+    luogo.foto = document.getElementById('foto').value
+    luogo.per = document.getElementById('per').value
+    luogo.tipo = document.getElementById('tipo').value
+    luogo.att = document.getElementById('att').value
+    luogo.prz = document.getElementById('prz').value
+    luogo.dur = document.getElementById('dur').value
+    luogo.ff = document.getElementById('ff').value
+    luogo.vic = document.getElementById('vic').value
+    luogo.punt = document.getElementById('punt').value
+    salva().then(() =>{
+    cTable(tableCont, list); 
+    cTableAdmin(tableContAd, list, cancella, modifica); 
+    carica().then(()=>{
+      renderLuoghi();
+    })
+    
+  })
+    //reset variabili
+    document.getElementById('name').value = '';
+    document.getElementById('desc').value = '';
+    document.getElementById('foto').value = '';
+    document.getElementById('per').value = '';
+    document.getElementById('tipo').value = '';
+    document.getElementById('att').value = '';
+    document.getElementById('prz').value = '';
+    document.getElementById('dur').value = '';
+    document.getElementById('ff').value = '';
+    document.getElementById('vic').value = '';
+    document.getElementById('punt').value = '';
+
+}}
 createLogin();

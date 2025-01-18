@@ -36,8 +36,8 @@ export const cTableAdmin = (parentElement, data, cancellaCB, modificaCB) => {
                     <td>${luogo.ff}</td>
                     <td>${luogo.vic}</td>
                     <td>${luogo.punt}</td>
-                    <td><button onclick="modificaCB(${i})" id="editBtn${i}" class="edit-btn">Edit</button></td>
-                    <td><button onclick="cancellaCB(${i})" id="delBtn${i}" class="del-btn">Delete</button></td>
+                    <td><button id="editBtn${i}" class="edit-btn" data-bs-toggle="modal" data-bs-target="#luoghiModal">Edit</button></td>
+                    <td><button id="delBtn${i}" class="del-btn">Delete</button></td>
                  </tr>`;
     }
     html += '</table>';
