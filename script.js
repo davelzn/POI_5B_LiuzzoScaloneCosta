@@ -6,18 +6,13 @@ import { viewDetails } from './detail.js';
 
 const navigator = createNavigator(document.querySelector('#container'));
 
-//https://postimg.cc/gallery/WFMGy6d
-const apriBtn = document.getElementById("apriBtn");
-const apriLog = document.getElementById("apriLog");
-const loginModal = document.getElementById("loginModal");
+//https://postimg.cc/gallery/hX12655
 const luoghiModal = document.getElementById("luoghiModal")
 const tableCont = document.getElementById('table-container');
 const tableContAd = document.getElementById("table-container-ad");
 const homeBtn = document.getElementById("home-btn-ad");
-const homeBtnSp = document.getElementById("home-btn-sp");
 const titleModal = document.getElementById("modal-title");
 const addPlaceBtn = document.getElementById("add-btn-ad");
-const headerAd = document.getElementById("header-ad");
 
 // inizializzazione mappa
 let zoom = 4;
@@ -142,7 +137,7 @@ function SubmForm() {
           backdrop.remove();
         }
         cTable(tableCont, list, viewDetails);
-      cTableAdmin(tableContAd, list, cancella, modifica)
+        cTableAdmin(tableContAd, list, cancella, modifica)
       }
     })
     .catch(error => {
@@ -172,12 +167,12 @@ function renderLuoghi() {
     }
     const pops = document.querySelectorAll('.pop-diretto');
 
-    pops.forEach(pop => {
+    pops.forEach(pop => { //rende ogni popup clickabile per accedere alla pagina di dettaglio
         pop.addEventListener('click', () => {
-            const id = pop.id.split('/')[1];
+            const id = pop.id.split('/')[1]; //prende l'id dell' ancora e splita / per ottenere l'"id"
             console.log("ID "+id)
-            window.location.hash = "detail_" + id;
-            viewDetails(id);  
+            window.location.hash = "detail_" + id; //setta l'hash 
+            viewDetails(id); 
         });
     });
   }
@@ -189,10 +184,9 @@ const resetBtn = document.getElementById('reset-btn');
 
 document.getElementById("submit").onclick = () => {
   SubmForm();
-
 }
 
-filterBtn.onclick = () => {
+filterBtn.onclick = () => { //funzione filtro
   console.log('Funzione filtro');
   let ind1 = document.getElementById('filterS').value;
   console.log(ind1);
@@ -210,7 +204,7 @@ resetBtn.onclick = () => {
 
 addPlaceBtn.onclick = () => {
   titleModal.innerHTML = "ADD NEW PLACE"
-  //reset variabili
+  //reset variabili ogni volta che viene clickato il tasto ADD
   document.getElementById('name').value = '';
   document.getElementById('descS').value = '';
   document.getElementById('descL').value = '';
@@ -225,7 +219,7 @@ addPlaceBtn.onclick = () => {
   document.getElementById('punt').value = '';
 }
 
-homeBtn.onclick = () => {
+homeBtn.onclick = () => { //sett l'hash alla home
   window.location.hash = 'home';
   document.body.style.overflow = 'auto';
 }
@@ -272,11 +266,11 @@ function modifica(i){
     luogo.vic = document.getElementById('vic').value;
     luogo.punt = document.getElementById('punt').value;
     luoghiModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-        const backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) {
-          backdrop.remove();
-        }
+    document.body.classList.remove('modal-open');
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
     salva().then(() =>{
     cTable(tableCont, list, viewDetails);
     cTableAdmin(tableContAd, list, cancella, modifica)

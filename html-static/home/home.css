@@ -1,108 +1,114 @@
+/* home.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f0ebe1;
 }
 
 .container {
-    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #000;
-    color: #fff;
-    padding: 10px 20px;
+    padding: 20px 0;
+    border-bottom: 2px solid #d4a373;
 }
 
 header h1 {
     margin: 0;
+    font-size: 32px;
+    color: #2c3e50;
+    text-align: center;
 }
 
-#adminButton {
-    background-color: #fff;
-    color: #000;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
+header a {
+    text-decoration: none;
+    padding-right: px;
+    font-size: 16px;
+    color: white;
+    background-color: #206cb3;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    flex-shrink: 0;
+}
+
+header a:hover {
+    background-color: #1a27d4;
 }
 
 main {
-    margin-top: 20px;
+    padding: 20px 0;
 }
 
-#map {
-    position: relative;
-    height: 400px;
+section#map {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 200px;
     background-image: url('/POI_5B_LiuzzoScaloneCosta/html-static/images/australia.jpg');
     background-size: cover;
     background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#map p {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    border-radius: 5px;
+    border: 2px solid #d4a373;
+    color: white;
     font-size: 24px;
-    font-weight: bold;
-}
-
-.poi {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #000;
-    border-radius: 50%;
-}
-
-#poi1 {
-    top: 30%;
-    left: 40%;
-}
-
-#poi2 {
-    top: 40%;
-    left: 50%;
-}
-
-#poi3 {
-    top: 50%;
-    left: 60%;
 }
 
 .divider {
     height: 2px;
-    background-color: #000;
+    background-color: #d4a373;
     margin: 20px 0;
 }
 
-#list-view {
-    text-align: center;
+section#list-view {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 2px solid #d4a373;
 }
 
-#list-view h2 {
-    margin-bottom: 10px;
+section#list-view h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #2c3e50;
 }
 
 .search-bar {
-    margin-bottom: 10px;
+    display: flex;
+    margin-bottom: 20px;
 }
 
 .search-bar input {
-    padding: 5px;
-    width: 200px;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
 }
 
 .search-bar button {
-    padding: 5px 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #e67e22;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #d35400;
 }
 
 table {
@@ -110,13 +116,22 @@ table {
     border-collapse: collapse;
 }
 
+table thead {
+    background-color: #e67e22;
+    color: white;
+}
+
 table th,
 table td {
-    border: 1px solid #000;
     padding: 10px;
+    border: 1px solid #ddd;
     text-align: left;
 }
 
-table th {
-    background-color: #f4f4f4;
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
 }

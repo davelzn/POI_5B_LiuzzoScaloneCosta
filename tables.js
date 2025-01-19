@@ -35,7 +35,7 @@ export const cTable = (parentElement, data, viewDetails) => {
 
 export const cTableAdmin = (parentElement, data, cancellaCB, modificaCB) => {
     let html =
-        '<table class="table-ad"><thead><tr><th>Name</th><th>Short Description</th><th>Long Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Coordinates</th><th>Family-friendly</th><th>Close to</th><th>Score</th><th>Edit</th><th>Delete</th></tr></thead>';
+        '<table class="table-ad"><thead><tr><th>Name</th><th>Short Description</th><th>Long Description</th><th>Type</th><th>Main activities</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Coordinates</th><th>Family-friendly</th><th>Close to</th><th>Score</th><th>Edit</th><th>Delete</th></tr></thead>';
     for (let i = 0; i < data.length; i++) {
         let luogo = data[i];
         let descSs = accorcia(luogo.descS, 3);
@@ -47,6 +47,7 @@ export const cTableAdmin = (parentElement, data, cancellaCB, modificaCB) => {
                     <td>${descSs}</td> 
                     <td>${descLs}</td> 
                     <td>${luogo.tipo}</td>
+                    <td>${luogo.att}</td>
                     <td>${luogo.prz}</td>
                     <td>${luogo.per}</td>
                     <td>${luogo.dur}</td>
@@ -67,7 +68,7 @@ export const cTableAdmin = (parentElement, data, cancellaCB, modificaCB) => {
     }
 };
 
-const accorcia = (desc, lim) => {
+const accorcia = (desc, lim) => { //Funzione per mostarre solo le prime 3 parole delle descrizioni
     const words = desc.split(' ');
     if (words.length > lim) {
         return words.slice(0, lim).join(' ') + '...'; 
