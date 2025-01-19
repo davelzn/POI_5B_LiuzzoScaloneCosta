@@ -1,12 +1,13 @@
 //COMPONENTE TABELLA
-export const cTable = (parentElement, data) => {
+export const cTable = (parentElement, data, viewDetails) => {
     let html =
         '<table><thead><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Family-friendly</th><th>Score</th></tr></thead>';
+    
     for (let i = 0; i < data.length; i++) {
         let luogo = data[i];
-        html += `<tr>
+        html += `<tr id="row/${luogo.id}" class="click-row">
                     <td>${luogo.nome}</td>
-                    <td>${luogo.desc}</td>
+                    <td>${luogo.descS}</td>
                     <td>${luogo.tipo}</td>
                     <td>${luogo.prz}</td>
                     <td>${luogo.per}</td>
@@ -17,17 +18,34 @@ export const cTable = (parentElement, data) => {
     }
     html += '</table>';
     parentElement.innerHTML = html;
+
+
+    const rows = parentElement.querySelectorAll('.click-row');
+    rows.forEach(row => {
+        row.addEventListener('click', () => {
+            const id = row.id.split('/')[1];
+            console.log("ID "+id)
+            window.location.hash = "detail_" + id;
+            viewDetails(id);  
+        });
+    });
 };
+
+
 
 export const cTableAdmin = (parentElement, data, cancellaCB, modificaCB) => {
     let html =
-        '<table class="table-ad"><thead><tr><th>Name</th><th>Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Coordinates</th><th>Family-friendly</th><th>Close to</th><th>Score</th><th>Edit</th><th>Delete</th></tr></thead>';
+        '<table class="table-ad"><thead><tr><th>Name</th><th>Short Description</th><th>Long Description</th><th>Type</th><th>Average price</th><th>Best season</th><th>Recommended duration</th><th>Coordinates</th><th>Family-friendly</th><th>Close to</th><th>Score</th><th>Edit</th><th>Delete</th></tr></thead>';
     for (let i = 0; i < data.length; i++) {
         let luogo = data[i];
-        let coordinates = `${luogo.lat}, ${luogo.lon}`;
+        let descSs = accorcia(luogo.descS, 3);
+        let descLs = accorcia(luogo.descL, 3); 
+        let coordinates = ${luogo.lat}, ${luogo.lon};
+        
         html += `<tr>
                     <td>${luogo.nome}</td>
-                    <td>${luogo.desc}</td>
+                    <td>${descSs}</td> 
+                    <td>${descLs}</td> 
                     <td>${luogo.tipo}</td>
                     <td>${luogo.prz}</td>
                     <td>${luogo.per}</td>
@@ -44,7 +62,15 @@ export const cTableAdmin = (parentElement, data, cancellaCB, modificaCB) => {
     parentElement.innerHTML = html;
 
     for (let i = 0; i < data.length; i++) {
-        document.getElementById(`delBtn${i}`).onclick = () => cancellaCB(i);
-        document.getElementById(`editBtn${i}`).onclick = () => modificaCB(i);
+        document.getElementById(delBtn${i}).onclick = () => cancellaCB(i);
+        document.getElementById(editBtn${i}).onclick = () => modificaCB(i);
     }
+};
+
+const accorcia = (desc, lim) => {
+    const words = desc.split(' ');
+    if (words.length > lim) {
+        return words.slice(0, lim).join(' ') + '...'; 
+    }
+    return desc;
 };
