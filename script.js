@@ -118,7 +118,7 @@ function SubmForm() {
           renderLuoghi();
         });
 
-        esitoDiv.innerHTML = '<div class="alert alert-success">Prenotazione aggiunta con successo!</div>';
+        esitoDiv.innerHTML = '<div class="alert alert-success">Luogo aggiunto con successo!</div>';
 
         //reset variabili
         document.getElementById('name').value = '';
@@ -141,6 +141,7 @@ function SubmForm() {
         if (backdrop) {
           backdrop.remove();
         }
+        esitoDiv.innerHTML = "";
         cTable(tableCont, list, viewDetails);
       cTableAdmin(tableContAd, list, cancella, modifica)
       }
