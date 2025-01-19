@@ -2,6 +2,7 @@ import { createNavigator } from './navigator.js';
 import { carica, salva, list } from "./carica_salva.js";
 import { cTable,cTableAdmin } from './tables.js';
 import { createLogin } from './login.js';
+import { viewDetails } from './detail.js';
 
 const navigator = createNavigator(document.querySelector('#container'));
 
@@ -47,7 +48,7 @@ fetch('./conf.json') // carica le variabili da conf.json
     carica().then(() => {
       console.log(list);
       renderLuoghi();
-      cTable(tableCont, list);
+      cTable(tableCont, list, viewDetails);
       cTableAdmin(tableContAd, list, cancella, modifica)
     });
   })
@@ -62,7 +63,8 @@ fetch('./conf.json') // carica le variabili da conf.json
 //funzione per inviare i dati del form
 function SubmForm() {
   let nome = document.getElementById('name').value;
-  let desc = document.getElementById('desc').value;
+  let descS = document.getElementById('descS').value;
+  let descL = document.getElementById('descL').value;
   let foto = document.getElementById('foto').value.split(',');
   let per = document.getElementById('per').value;
   let tipo = document.getElementById('tipo').value;
@@ -81,7 +83,7 @@ function SubmForm() {
   }
 
   let indAU = nome + ', Australia';
-  let url = `https://us1.locationiq.com/v1/search?key=${tokenMap}&q=${encodeURIComponent(indAU)}&format=json`;
+  let url = 'https://us1.locationiq.com/v1/search?key=${tokenMap}&q=${encodeURIComponent(indAU)}&format=json';
 
   fetch(url)
     .then(response => response.json())
@@ -95,7 +97,8 @@ function SubmForm() {
         const k = {
           id: uuid.v4(),  //genera un'id unicop
           nome: indAU,
-          desc: desc,
+          descS: descS,
+          descL: descL,
           foto: foto,
           per: per,
           tipo: tipo,
@@ -119,7 +122,8 @@ function SubmForm() {
 
         //reset variabili
         document.getElementById('name').value = '';
-        document.getElementById('desc').value = '';
+        document.getElementById('descS').value = '';
+        document.getElementById('descL').value = '',
         document.getElementById('foto').value = '';
         document.getElementById('per').value = '';
         document.getElementById('tipo').value = '';
@@ -137,8 +141,8 @@ function SubmForm() {
         if (backdrop) {
           backdrop.remove();
         }
-        cTable(tableCont, list);
-        cTableAdmin(tableContAd,list);
+        cTable(tableCont, list, viewDetails);
+      cTableAdmin(tableContAd, list, cancella, modifica)
       }
     })
     .catch(error => {
@@ -157,7 +161,6 @@ function renderLuoghi() {
     const marker = L.marker(coords).addTo(map);
     const popupContent = `
         <b>Name:</b> ${luogo.nome}<br>
-        <b>Description:</b> ${luogo.desc}<br>
         <b>Type:</b> ${luogo.tipo}<br>
         <b>Main activities:</b> ${luogo.att}<br>
         <b>Best Season:</b> ${luogo.per}<br>
@@ -184,11 +187,11 @@ filterBtn.onclick = () => {
     k.nome.toLowerCase().includes(ind1.toLowerCase())
   );
   console.log(filteredList);
-  cTable(tableCont, filteredList);
+  cTable(tableCont, filteredList, viewDetails);
   
 };
 resetBtn.onclick = () => {
-  cTable(tableCont, list);
+  cTable(tableCont, list, viewDetails);
   document.getElementById('filterS').value = '';
 };
 
@@ -196,7 +199,8 @@ addPlaceBtn.onclick = () => {
   titleModal.innerHTML = "ADD NEW PLACE"
   //reset variabili
   document.getElementById('name').value = '';
-  document.getElementById('desc').value = '';
+  document.getElementById('descS').value = '';
+  document.getElementById('descL').value = '';
   document.getElementById('foto').value = '';
   document.getElementById('per').value = '';
   document.getElementById('tipo').value = '';
@@ -212,14 +216,11 @@ homeBtn.onclick = () => {
   window.location.hash = 'home';
   document.body.style.overflow = 'auto';
 }
-homeBtnSp.onclick = () => {
-  window.location.hash = 'home';
-}
 function cancella(i){
   list.splice(i, 1);
   salva().then(() =>{
-    cTable(tableCont, list); 
-    cTableAdmin(tableContAd, list, cancella, modifica); 
+    cTable(tableCont, list, viewDetails);
+    cTableAdmin(tableContAd, list, cancella, modifica)
     carica().then(()=>{
       renderLuoghi();
     })
@@ -231,7 +232,8 @@ function cancella(i){
 function modifica(i){
   const luogo = list[i];
   document.getElementById('name').value = luogo.nome;
-  document.getElementById('desc').value = luogo.desc;
+  document.getElementById('descS').value = luogo.descS;
+  document.getElementById('descL').value = luogo.descL;
   document.getElementById('foto').value = luogo.foto;
   document.getElementById('per').value = luogo.per;
   document.getElementById('tipo').value = luogo.tipo
@@ -244,20 +246,21 @@ function modifica(i){
   titleModal.innerHTML = "EDIT PLACE";
 
   document.getElementById("submit").onclick = () => {
-    luogo.nome = document.getElementById('name').value
-    luogo.desc = document.getElementById('desc').value
-    luogo.foto = document.getElementById('foto').value
-    luogo.per = document.getElementById('per').value
-    luogo.tipo = document.getElementById('tipo').value
-    luogo.att = document.getElementById('att').value
-    luogo.prz = document.getElementById('prz').value
-    luogo.dur = document.getElementById('dur').value
-    luogo.ff = document.getElementById('ff').value
-    luogo.vic = document.getElementById('vic').value
-    luogo.punt = document.getElementById('punt').value
+    luogo.nome = document.getElementById('name').value;
+    luogo.descS = document.getElementById('descS').value;
+    luogo.descL = document.getElementById('descL').value;
+    luogo.foto = document.getElementById('foto').value.split(',');
+    luogo.per = document.getElementById('per').value;
+    luogo.tipo = document.getElementById('tipo').value;
+    luogo.att = document.getElementById('att').value;
+    luogo.prz = document.getElementById('prz').value;
+    luogo.dur = document.getElementById('dur').value;
+    luogo.ff = document.getElementById('ff').value;
+    luogo.vic = document.getElementById('vic').value;
+    luogo.punt = document.getElementById('punt').value;
     salva().then(() =>{
-    cTable(tableCont, list); 
-    cTableAdmin(tableContAd, list, cancella, modifica); 
+    cTable(tableCont, list, viewDetails);
+    cTableAdmin(tableContAd, list, cancella, modifica)
     carica().then(()=>{
       renderLuoghi();
     })
