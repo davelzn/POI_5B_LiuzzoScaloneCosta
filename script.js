@@ -166,10 +166,22 @@ function renderLuoghi() {
         <b>Best Season:</b> ${luogo.per}<br>
         <b>Recommended Duration:</b> ${luogo.dur}<br>
         <b>Family-Friendly:</b> ${luogo.ff}<br>
+        <a id="pop/${luogo.id}" class="pop-diretto">View Details</a>
       `;
     marker.bindPopup(popupContent).openPopup();
+    }
+    const pops = document.querySelectorAll('.pop-diretto');
+
+    pops.forEach(pop => {
+        pop.addEventListener('click', () => {
+            const id = pop.id.split('/')[1];
+            console.log("ID "+id)
+            window.location.hash = "detail_" + id;
+            viewDetails(id);  
+        });
+    });
   }
-}
+
 
 //GESTIONE BOTTONI
 const filterBtn = document.getElementById('filter-btn');
@@ -177,6 +189,7 @@ const resetBtn = document.getElementById('reset-btn');
 
 document.getElementById("submit").onclick = () => {
   SubmForm();
+
 }
 
 filterBtn.onclick = () => {
@@ -258,6 +271,12 @@ function modifica(i){
     luogo.ff = document.getElementById('ff').value;
     luogo.vic = document.getElementById('vic').value;
     luogo.punt = document.getElementById('punt').value;
+    luoghiModal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) {
+          backdrop.remove();
+        }
     salva().then(() =>{
     cTable(tableCont, list, viewDetails);
     cTableAdmin(tableContAd, list, cancella, modifica)

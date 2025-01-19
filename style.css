@@ -190,6 +190,9 @@ table tbody tr:hover {
 }
 
 /* admiin.css */
+#admin{
+    overflow: scroll;
+}
 .header-ad {
     display: flex;
     justify-content: space-between;
@@ -412,7 +415,7 @@ table tbody tr:hover {
 /* spec.css */
 
 .container-sp {
-    max-width: 1200px;
+    max-width:fit-content;
     margin: 0 auto;
     padding: 20px;
     background-color: white;
