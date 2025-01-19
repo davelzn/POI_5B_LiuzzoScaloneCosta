@@ -40,7 +40,7 @@ export const cTableAdmin = (parentElement, data, cancellaCB, modificaCB) => {
         let luogo = data[i];
         let descSs = accorcia(luogo.descS, 3);
         let descLs = accorcia(luogo.descL, 3); 
-        let coordinates = '${luogo.lat}, ${luogo.lon}';
+        let coordinates = `${luogo.lat}, ${luogo.lon}`;
         
         html += `<tr>
                     <td>${luogo.nome}</td>
