@@ -155,28 +155,27 @@ function renderLuoghi() {
     let luogo = list[i];
     const coords = [luogo.lat, luogo.lon];
     const marker = L.marker(coords).addTo(map);
+
     const popupContent = `
-        <b>Name:</b> ${luogo.nome}<br>
+        <b> Name:</b> ${luogo.nome}<br>
         <b>Type:</b> ${luogo.tipo}<br>
         <b>Main activities:</b> ${luogo.att}<br>
         <b>Best Season:</b> ${luogo.per}<br>
         <b>Recommended Duration:</b> ${luogo.dur}<br>
         <b>Family-Friendly:</b> ${luogo.ff}<br>
-        <a id="pop/${luogo.id}" class="pop-diretto">View Details</a>
-      `;
-    marker.bindPopup(popupContent).openPopup();
-    }
-    const pops = document.querySelectorAll('.pop-diretto');
+        <a class="view-details-link" onclick="connettiDett('${luogo.id}')">View Details</a>
+    `;
 
-    pops.forEach(pop => { //rende ogni popup clickabile per accedere alla pagina di dettaglio
-        pop.addEventListener('click', () => {
-            const id = pop.id.split('/')[1]; //prende l'id dell' ancora e splita / per ottenere l'"id"
-            console.log("ID "+id)
-            window.location.hash = "detail_" + id; //setta l'hash 
-            viewDetails(id); 
-        });
-    });
+    marker.bindPopup(popupContent);
   }
+}
+
+function connettiDett(id) {
+  window.location.hash = ""; // Resetta l'hash
+  window.location.hash = "detail_" + id; // Imposta il nuovo hash
+  viewDetails(id);
+}
+window.connettiDett = connettiDett
 
 
 //GESTIONE BOTTONI
@@ -282,3 +281,23 @@ function modifica(i){
   })
 }}
 createLogin();
+
+window.addEventListener("load", () => {
+  const currentHash = window.location.hash;
+
+  if (currentHash.includes("#details_")) {
+    const id = currentHash.split("_")[1];  
+    if (list.length > 0) {// verifico se i dtai sono già disponibili
+      viewDetails(id);
+    } else { // aspetto che i dati vengano caricati prima di chiamare viewDetails
+      carica().then(() => {
+        viewDetails(id);
+      }).catch(error => {
+        console.error("Errore nel caricamento dei dati:", error);
+      });
+    }
+  } else {
+    document.getElementById("home").style.display = 'block';
+    document.getElementById('details-container').style.display = 'none';
+  }
+});
