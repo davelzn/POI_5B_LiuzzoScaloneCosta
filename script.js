@@ -282,7 +282,7 @@ function modifica(i){
 }}
 createLogin();
 
-window.addEventListener("load", () => {
+window.addEventListener("load", () => { //ogni volta che carica il DOM verifica su che pagina si trovi cosí da generare in caso la pagina di dettaglio (serve per potere salvare la pagiNa di dettglio sei preferiti del browser)
   const currentHash = window.location.hash;
 
   if (currentHash.includes("#details_")) {
